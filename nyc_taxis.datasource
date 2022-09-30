@@ -1,0 +1,23 @@
+SCHEMA >
+    `DOLocationID` Int16 `json:$.DOLocationID`,
+    `PULocationID` Int16 `json:$.PULocationID`,
+    `RatecodeID` Nullable(Float32) `json:$.RatecodeID`,
+    `VendorID` Nullable(Int16) `json:$.VendorID`,
+    `congestion_surcharge` Nullable(Float32) `json:$.congestion_surcharge`,
+    `extra` Nullable(Float32) `json:$.extra`,
+    `fare_amount` Nullable(Float32) `json:$.fare_amount`,
+    `improvement_surcharge` Nullable(Float32) `json:$.improvement_surcharge`,
+    `mta_tax` Nullable(Float32) `json:$.mta_tax`,
+    `passenger_count` Nullable(Float32) `json:$.passenger_count`,
+    `payment_type` Nullable(Int16) `json:$.payment_type`,
+    `store_and_fwd_flag` Nullable(String) `json:$.store_and_fwd_flag`,
+    `tip_amount` Nullable(Float32) `json:$.tip_amount`,
+    `tolls_amount` Nullable(Float32) `json:$.tolls_amount`,
+    `total_amount` Nullable(Float32) `json:$.total_amount`,
+    `tpep_dropoff_datetime` DateTime `json:$.tpep_dropoff_datetime`,
+    `tpep_pickup_datetime` DateTime `json:$.tpep_pickup_datetime`,
+    `trip_distance` Nullable(Float32) `json:$.trip_distance`
+
+ENGINE "MergeTree"
+ENGINE_PARTITION_KEY "toMonth(tpep_pickup_datetime)"
+ENGINE_SORTING_KEY "tpep_pickup_datetime"

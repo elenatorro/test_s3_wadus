@@ -1,0 +1,8 @@
+SCHEMA >
+    `date` Date,
+    `max_tip` Nullable(SimpleAggregateFunction(max, Float32)),
+    `max_total_amount` Nullable(SimpleAggregateFunction(max, Float32))
+
+ENGINE "AggregatingMergeTree"
+ENGINE_PARTITION_KEY "toYYYYMM(date)"
+ENGINE_SORTING_KEY "date"

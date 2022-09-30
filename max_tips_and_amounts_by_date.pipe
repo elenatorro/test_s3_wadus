@@ -1,0 +1,15 @@
+NODE mv
+SQL >
+
+    SELECT
+        toDate(tpep_pickup_datetime) AS date,
+        maxSimpleState(tip_amount) AS max_tip,
+        maxSimpleState(total_amount) AS max_total_amount
+    FROM nyc_taxis
+    GROUP BY date
+
+TYPE materialized
+DATASOURCE max_tips_and_amounts_by_date_mv
+ENGINE "AggregatingMergeTree"
+ENGINE_PARTITION_KEY "toYYYYMM(date)"
+ENGINE_SORTING_KEY "date"
