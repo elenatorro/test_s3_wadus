@@ -1,4 +1,4 @@
-name: s3_replaces_metrics
+name: ch_replaces_metrics
 
 on:
   workflow_dispatch:
@@ -14,12 +14,12 @@ jobs:
     - name: cURL request
       run: |
         curl \
-          -H "Authorization: Bearer ${TB_TOKEN}" \
+          -H "Authorization: Bearer ${CH_TB_TOKEN}" \
           -X POST "https://${TB_HOST}.tinybird.co/v0/datasources" \
           -d "format=parquet" \
           -d "name=nyc_taxis" \
           -d "mode=replace" \
           --data-urlencode "url=https://d37ci6vzurychx.cloudfront.net/trip-data/yellow_tripdata_$(shuf -i 2009-2019 -n 1)-0$(shuf -i 1-9 -n 1).parquet"
       env:
-        TB_TOKEN: ${{ secrets.TB_TOKEN }}
+        CH_TB_TOKEN: ${{ secrets.CH_TB_TOKEN }}
         TB_HOST: ${{ secrets.TB_HOST }}
