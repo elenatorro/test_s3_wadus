@@ -14,6 +14,7 @@ jobs:
       CH_TB_TOKEN: ${{ secrets.CH_TB_TOKEN }}
       GCS_TB_TOKEN: ${{ secrets.GCS_TB_TOKEN }}
       S3_TB_TOKEN: ${{ secrets.S3_TB_TOKEN }}
+      GCS_HC_TB_TOKEN: ${{ secrets.GCS_HC_TB_TOKEN }}
       TB_HOST: ${{ secrets.TB_HOST }}
     steps:
     - name: Set YELLOW_TRIPDATA_URL
@@ -31,6 +32,15 @@ jobs:
       run: |
         curl \
           -H "Authorization: Bearer ${GCS_TB_TOKEN}" \
+          -X POST "https://${TB_HOST}.tinybird.co/v0/datasources" \
+          -d "format=parquet" \
+          -d "name=nyc_taxis" \
+          -d "mode=replace" \
+          --data-urlencode "url=${YELLOW_TRIPDATA_URL}"
+    - name: GCS HC replace
+      run: |
+        curl \
+          -H "Authorization: Bearer ${GCS_HC_TB_TOKEN}" \
           -X POST "https://${TB_HOST}.tinybird.co/v0/datasources" \
           -d "format=parquet" \
           -d "name=nyc_taxis" \
