@@ -14,7 +14,6 @@ jobs:
       S3_TB_TOKEN: ${{ secrets.S3_TB_TOKEN }}
       TB_HOST: ${{ secrets.TB_HOST }}
     steps:
-    - uses: actions/checkout@v2
     - name: Set YELLOW_TRIPDATA_URL
       run: echo "YELLOW_TRIPDATA_URL=https://d37ci6vzurychx.cloudfront.net/trip-data/yellow_tripdata_$(shuf -i 2009-2019 -n 1)-0$(shuf -i 1-9 -n 1).parquet" >> $GITHUB_ENV
     - name: CH replace
