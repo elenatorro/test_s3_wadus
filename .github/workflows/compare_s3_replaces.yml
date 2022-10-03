@@ -1,4 +1,4 @@
-name: all_replaces_metrics
+name: compare_s3_replaces
 
 on:
   schedule:
@@ -6,7 +6,7 @@ on:
 
 jobs:
   replace:
-    name: Trigger Export Endpoint
+    name: Replace NYC taxi tripdata
     runs-on: ubuntu-latest
     env:
       YELLOW_TRIPDATA_URL: "https://d37ci6vzurychx.cloudfront.net/trip-data/yellow_tripdata_$(shuf -i 2009-2019 -n 1)-0$(shuf -i 1-9 -n 1).parquet"
