@@ -3,8 +3,9 @@ name: compare_s3_replaces
 on:
   workflow_dispatch:
     manual: false
-  schedule:
-    - cron: '*/60 * * * *'
+
+  # schedule:
+  #   - cron: '*/60 * * * *'
 
 jobs:
   replace:
